@@ -1,14 +1,12 @@
 I still want to add in a few things:
 
-* Currently on deletion of a user on the board it does not also delete the ftp
-  user.. should be simple to inject some lines to do that
+* It would be more sane to offload all of the config to the main x84 config
+  file.. til then, this stays messy
 
 * The ftp-cmd stuff doesnt return any kind of display to the user.. the glAsh
   version of POR of course does do that, so I want to do the same
 
 * The file area needs a rewrite - ZMODEM support at the very least, and a
   ZIPSCRIPT
-
-* a pre/dupe search door... :)
 
 --(snip)--
