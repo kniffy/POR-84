@@ -1,0 +1,100 @@
+
+PROJECT OLDSKOOL REVENGE NEXT GENERATION
+
+If any of you have tried to install daydream bbs and POR on a modern system
+lately, its filled with bugs and broken in all kinds of weird ways, so here
+is a functionality port of the POR we all love to x84 - pure python :)
+
+As this is the initial version, it is very bare bones right now
+
+REQUIREMENTS:
+
+* I assume you already have a working glftpd, so I wont be giving any info on
+  that in these docs
+
+* I assume you also already kinda know how to work with x84, or are at least
+  read up on the official x84 docs; either way, get a board running before
+  installing this :)
+
+* While not really a requirement, you should really put this board inside of
+  a virtualenv.. makes it simpler
+
+Alright, onto the instructions:
+
+unpack the 'por-84' folder to someplace your virtualenv can reach, e.g:
+ /home/user/x84/bmc/local/lib/python2.7/site-packages/x84-2.0.13-py2.7.egg/x84/
+
+from there, set your ~/.x84/default.ini scriptpath to that dir, e.g:
+ scriptpath = /home/user/x84/bmc/local/lib/python2.7/site-packages/x84-2.0.13-py2.7.egg/x84/por-84
+
+Congrats, you're already running POR :) ..almost, anyway
+
+CONFIGURATION:
+
+This is pretty similar to the default x84 board with some modified files, and
+a couple of extras:
+
+* main.py	- the main menu script; we add in the ftp-cmd menu item
+* matrix.py	- not much, but we add in a spot for yelling at users
+* bmcnua.py	- the main magic, USER CREATION
+* p.py		- the very excellent ftp-cmd script (its not excellent)
+* superp.py	- special sYSOP version of the ftp-cmd's
+* art/BMC-NEWS.TXT	- moved the spot of the newsfile to be easier to find
+
+Now, only some of these *NEED* you to edit them - read all these please
+
+* main.py
+
+All this has is the menu items for the ftp-cmd's - note the 'sysop only' spots
+
+* matrix.py
+
+I injected a few lines for yelling at users below the art banner; feel free to
+edit in your own or just comment them out
+
+* bmcnua.py
+
+To get the NEW USER CREATION working, you must edit bmcnua.py to point to
+your glftpd install; make a special sysop user on the glftpd and put their
+login details in the conf (plaintext, i know, but dont worry about that)
+
+Feel free to change up the specific commands that are actually performed
+if you know what you're doing :)
+
+* p.py
+* superp.py
+
+To get the FTP-CMDs working, edit these files to point to a special ftp-cmd
+user that does NOT have sysop access - site msg and request etc is all you can
+really do at the moment, so the ftp-cmd user should have fancy powers
+
+The superp.py file will magically know your board username, so all you gotta
+config is what password you use on the board - naturally this will let you do
+commands at whatever access level you have on site, which since you're sYSOP
+is probably everything.. dont break your shit :p
+
+* art/BMC-NEWS.TXT
+
+I moved the newsfile to here since its easier to edit :)
+
+Now, for the live site browsing from within the board, simply symlink to your
+glftpd site dir (or subdirs) in the ~/x84-sftp_root/ dir :)
+
+Personally, I leave a note telling users to use the FTP instead, but users can
+at least go and step directories and see the nice file_id.diz's
+
+Just remember users might stick some crap files into your dirs, since it lacks
+any kind of built in zipscript.. version two maybe :)
+
+
+
+Now you should have a working PROJECT OLDSKOOL REVENGE board :)
+
+Greets to glAsh for having written POR in the first place, couldnt have done
+this without that initial work :)
+
+Come idle in:
+* #kiwidox / efnet
+* #1984 / efnet
+* #por / efnet
+
